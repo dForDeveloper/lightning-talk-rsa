@@ -191,13 +191,12 @@ document.querySelector('.encrypt').addEventListener('click', function() {
   numberMessage = messageArray.map(function(char) {
     return convertLetterToNumber(char);
   });
-  console.log('message pre encryption', numberMessage);
   let messagePostAlgorithm = numberMessage.map(function(num) {
     return exponentiateAndMod(num, exp, mod);
   });
   let encryptedMessage = JSON.stringify(messagePostAlgorithm);
-  sessionStorage.setItem('encrypted', JSON.stringify(messagePostAlgorithm));
-  console.log('encryptedMessage', encryptedMessage);
+  document.querySelector('.encryption-result').innerText = `${encryptedMessage}`;
+
 });
 
 document.querySelector('.decrypt').addEventListener('click', function() {
@@ -208,13 +207,11 @@ document.querySelector('.decrypt').addEventListener('click', function() {
   let messagePostAlgorithm = parsedMessage.map(function(num) {
     return exponentiateAndMod(num, exp, mod);
   });
-  console.log('decrypted messagePostAlgorithm', messagePostAlgorithm);
   let cipherTextArray = messagePostAlgorithm.map(function(num) {
     return convertNumberToLetter(num);
   });
-  console.log('cipherTextArray', cipherTextArray);
   let cipherText = cipherTextArray.join('');
-  console.log('cipherText', cipherText);
+  document.querySelector('.decryption-result').innerText = `${cipherText}`;
 });
 
 function convertLetterToNumber(letter) {
@@ -257,8 +254,13 @@ function exponentiateAndMod(num, exp, mod) {
     result = (result ** 2) % mod;
   }
   let lastExponent = exp - (2 ** iterationsOfSquaring);
-  result = (result * (num ** lastExponent)) % mod;
-  return result;
+  if (lastExponent > 5) {
+    result = (result * exponentiateAndMod(num, lastExponent, mod)) % mod;
+    return result;
+  } else {
+    result = (result * (num ** lastExponent)) % mod;
+    return result;
+  }
 }
 
 function convertNumberToLetter(num) {
@@ -294,9 +296,9 @@ function convertNumberToLetter(num) {
   return cipher[num];
 }
 
-
-p = 19
-q = 15
-n = 95
-pub = 41, 95
-pri = 65, 95
+// working keys
+// p = 19
+// q = 15
+// n = 95
+// pub = 41, 95
+// pri = 65, 95

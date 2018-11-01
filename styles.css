@@ -27,6 +27,17 @@ input[type="number"] {
   width: 80px;
 }
 
-.encrypt {
+.grid {
+  display:  grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.encrypt,
+.decrypt {
   margin-bottom: 40px;
+}
+
+.encryption-result,
+.decryption-result {
+  font-size: 2rem;
 }

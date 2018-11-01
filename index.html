@@ -12,20 +12,28 @@
     </select>
     <button class="get-p-and-q">Generate RSA Keys</button>
     <div class="results"></div>
-    <label for="message">message: </label>
-    <input type="text" name="message" id="message">
-    <label for="exponent">exponent: </label>
-    <input type="number" name="exponent" id="exponent">
-    <label for="modulus">modulus: </label>
-    <input type="number" name="modulus" id="modulus">
-    <button class="encrypt">Encrypt</button>
-
-    <input type="text" name="message" id="message-d">
-    <label for="exponent-d">exponent: </label>
-    <input type="number" name="exponent" id="exponent-d">
-    <label for="modulus-d">modulus: </label>
-    <input type="number" name="modulus" id="modulus-d">
-    <button class="decrypt">Decrypt</button>
+    <section class="grid">
+      <article class="left">
+        <label for="message">message: </label>
+        <input type="text" name="message" id="message">
+        <label for="exponent">exponent: </label>
+        <input type="number" name="exponent" id="exponent">
+        <label for="modulus">modulus: </label>
+        <input type="number" name="modulus" id="modulus">
+        <button class="encrypt">Encrypt</button>
+        <div class="encryption-result"></div>
+      </article>
+      <article class="right">
+        <label for="message-d">ciphertext: </label>
+        <input type="text" name="message" id="message-d">
+        <label for="exponent-d">exponent: </label>
+        <input type="number" name="exponent" id="exponent-d">
+        <label for="modulus-d">modulus: </label>
+        <input type="number" name="modulus" id="modulus-d">
+        <button class="decrypt">Decrypt</button>
+        <div class="decryption-result"></div>
+      </article>
+    </section>
     <script type="text/javascript" src="main.js"></script>
   </body>
 </html>
