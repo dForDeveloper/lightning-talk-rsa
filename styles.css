@@ -1,0 +1,32 @@
+* {
+  font-size: 16px;
+}
+
+body {
+  text-align: center;
+}
+
+button {
+  display: block;
+  margin: auto;
+}
+
+.results {
+  height: 200px;
+}
+
+label {
+  display: block;
+}
+
+input[type="text"] {
+  width: 400px;
+}
+
+input[type="number"] {
+  width: 80px;
+}
+
+.encrypt {
+  margin-bottom: 40px;
+}

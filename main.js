@@ -119,31 +119,31 @@ for (var i = 0; i < 1000; i++) {
 document.querySelector('.get-p-and-q').addEventListener('click', function() {
   p = parseInt(document.querySelector('.p').value);
   q = parseInt(document.querySelector('.q').value);
-  document.querySelector('.message').innerText = '';
-  document.querySelector('.message').innerText += `p = ${p}\n`;
-  document.querySelector('.message').innerText += `q = ${q}\n`;
+  document.querySelector('.results').innerText = '';
+  document.querySelector('.results').innerText += `p = ${p}\n`;
+  document.querySelector('.results').innerText += `q = ${q}\n`;
   getN(p, q);
 });
 
 function getN(p, q) {
   n = p * q;
   var phiOfN = (p - 1) * (q - 1);
-  document.querySelector('.message').innerText += `n = ${n}\n`;
-  document.querySelector('.message').innerText += `phi(n) = ${phiOfN}\n`;
+  document.querySelector('.results').innerText += `n = ${n}\n`;
+  document.querySelector('.results').innerText += `phi(n) = ${phiOfN}\n`;
   chooseE(phiOfN);
 }
 
 function chooseE(phiOfN) {
   var possibleEs = first1000Primes.filter(prime => prime < phiOfN);
   let e = getRandomE(possibleEs, phiOfN);
-  document.querySelector('.message').innerText += `e = ${e}\n`;
+  document.querySelector('.results').innerText += `e = ${e}\n`;
   let d = drShiueMatrixMethod([[e, 1, 0], [phiOfN, 0, 1]]);
   if (d < 0) {
     d += phiOfN;
   }
-  document.querySelector('.message').innerText += `d = ${d}\n\n`;
-  document.querySelector('.message').innerText += `Public Key = (${e}, ${n})\n`;
-  document.querySelector('.message').innerText += `Private Key = (${d}, ${n})\n`;
+  document.querySelector('.results').innerText += `d = ${d}\n\n`;
+  document.querySelector('.results').innerText += `Public Key = (${e}, ${n})\n`;
+  document.querySelector('.results').innerText += `Private Key = (${d}, ${n})\n`;
 }
 
 function getRandomE(arr, phiOfN) {
@@ -182,3 +182,121 @@ function getSmallerRowIndex(matrix) {
     return 1;
   }
 }
+
+document.querySelector('.encrypt').addEventListener('click', function() {
+  let exp = parseInt(document.querySelector('#exponent').value);
+  let mod = parseInt(document.querySelector('#modulus').value);
+  let message = document.querySelector('#message').value;
+  let messageArray = message.toLowerCase().split('');
+  numberMessage = messageArray.map(function(char) {
+    return convertLetterToNumber(char);
+  });
+  console.log('message pre encryption', numberMessage);
+  let messagePostAlgorithm = numberMessage.map(function(num) {
+    return exponentiateAndMod(num, exp, mod);
+  });
+  let encryptedMessage = JSON.stringify(messagePostAlgorithm);
+  sessionStorage.setItem('encrypted', JSON.stringify(messagePostAlgorithm));
+  console.log('encryptedMessage', encryptedMessage);
+});
+
+document.querySelector('.decrypt').addEventListener('click', function() {
+  let encryptedMessage = document.querySelector('#message-d').value;
+  let parsedMessage = JSON.parse(encryptedMessage);
+  let exp = parseInt(document.querySelector('#exponent-d').value);
+  let mod = parseInt(document.querySelector('#modulus-d').value);
+  let messagePostAlgorithm = parsedMessage.map(function(num) {
+    return exponentiateAndMod(num, exp, mod);
+  });
+  console.log('decrypted messagePostAlgorithm', messagePostAlgorithm);
+  let cipherTextArray = messagePostAlgorithm.map(function(num) {
+    return convertNumberToLetter(num);
+  });
+  console.log('cipherTextArray', cipherTextArray);
+  let cipherText = cipherTextArray.join('');
+  console.log('cipherText', cipherText);
+});
+
+function convertLetterToNumber(letter) {
+  let cipher = {
+    ' ' : 0,
+    'a' : 1,
+    'b' : 2,
+    'c' : 3,
+    'd' : 4,
+    'e' : 5,
+    'f' : 6,
+    'g' : 7,
+    'h' : 8,
+    'i' : 9,
+    'j' : 10,
+    'k' : 11,
+    'l' : 12,
+    'm' : 13,
+    'n' : 14,
+    'o' : 15,
+    'p' : 16,
+    'q' : 17,
+    'r' : 18,
+    's' : 19,
+    't' : 20,
+    'u' : 21,
+    'v' : 22,
+    'w' : 23,
+    'x' : 24,
+    'y' : 25,
+    'z' : 26,
+  }
+  return cipher[letter];
+}
+
+function exponentiateAndMod(num, exp, mod) {
+  let result = num;
+  let iterationsOfSquaring = parseInt(Math.log(exp) / Math.log(2));
+  for (var i = 0; i < iterationsOfSquaring; i++) {
+    result = (result ** 2) % mod;
+  }
+  let lastExponent = exp - (2 ** iterationsOfSquaring);
+  result = (result * (num ** lastExponent)) % mod;
+  return result;
+}
+
+function convertNumberToLetter(num) {
+  let cipher = {
+    '0' : ' ',
+    '1' : 'a',
+    '2' : 'b',
+    '3' : 'c',
+    '4' : 'd',
+    '5' : 'e',
+    '6' : 'f',
+    '7' : 'g',
+    '8' : 'h',
+    '9' : 'i',
+    '10' : 'j',
+    '11' : 'k',
+    '12' : 'l',
+    '13' : 'm',
+    '14' : 'n',
+    '15' : 'o',
+    '16' : 'p',
+    '17' : 'q',
+    '18' : 'r',
+    '19' : 's',
+    '20' : 't',
+    '21' : 'u',
+    '22' : 'v',
+    '23' : 'w',
+    '24' : 'x',
+    '25' : 'y',
+    '26' : 'z',
+  }
+  return cipher[num];
+}
+
+
+p = 19
+q = 15
+n = 95
+pub = 41, 95
+pri = 65, 95
