@@ -95,10 +95,10 @@ function encrypt() {
   let message = document.querySelector('#message').value;
   let messageArray = message.toLowerCase().split('');
   numberMessage = messageArray.map(function(char) {
-    return convertLetterToNumber(char);
+    return convertCharacterToNumber(char);
   });
   let messagePostAlgorithm = numberMessage.map(function(num) {
-    return exponentiateAndMod(num, exp, mod);
+    return exponentiateAndModulo(num, exp, mod);
   });
   let encryptedMessage = JSON.stringify(messagePostAlgorithm);
   document.querySelector('.encryption-result').innerText = `${encryptedMessage}`;
@@ -110,24 +110,24 @@ function decrypt() {
   let exp = parseInt(document.querySelector('#exponent-d').value);
   let mod = parseInt(document.querySelector('#modulus-d').value);
   let messagePostAlgorithm = parsedMessage.map(function(num) {
-    return exponentiateAndMod(num, exp, mod);
+    return exponentiateAndModulo(num, exp, mod);
   });
   let cipherTextArray = messagePostAlgorithm.map(function(num) {
-    return convertNumberToLetter(num);
+    return convertNumberToCharacter(num);
   });
   let cipherText = cipherTextArray.join('');
   document.querySelector('.decryption-result').innerText = `${cipherText}`;
 }
 
-function exponentiateAndMod(num, exp, mod) {
+function exponentiateAndModulo(num, exp, mod) {
   let result = num;
   let iterationsOfSquaring = parseInt(Math.log(exp) / Math.log(2));
   for (var i = 0; i < iterationsOfSquaring; i++) {
     result = (result ** 2) % mod;
   }
   let lastExponent = exp - (2 ** iterationsOfSquaring);
-  if (lastExponent > 5) {
-    result = (result * exponentiateAndMod(num, lastExponent, mod)) % mod;
+  if (lastExponent > 2) {
+    result = (result * exponentiateAndModulo(num, lastExponent, mod)) % mod;
     return result;
   } else {
     result = (result * (num ** lastExponent)) % mod;
@@ -135,10 +135,10 @@ function exponentiateAndMod(num, exp, mod) {
   }
 }
 
-function convertLetterToNumber(letter) {
-  return letterToNumberCipher[letter];
+function convertCharacterToNumber(character) {
+  return characterToNumber[character];
 }
 
-function convertNumberToLetter(num) {
-  return numberToLetterCipher[num];
+function convertNumberToCharacter(num) {
+  return numberToCharacter[num];
 }
