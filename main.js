@@ -1,6 +1,3 @@
-var p, q, n;
-var newElem;
- 
 window.onload = generateDropDowns;
 
 document.querySelector('.get-p-and-q').addEventListener('click', getPQ);
@@ -8,14 +5,14 @@ document.querySelector('.encrypt').addEventListener('click', encrypt);
 document.querySelector('.decrypt').addEventListener('click', decrypt);
 
 function generateDropDowns() {
-  for (var i = 0; i < 1000; i++) {
-    newElem = document.createElement('option');
+  for (let i = 0; i < 1000; i++) {
+    const newElem = document.createElement('option');
     newElem.value = primes[i];
     newElem.innerText = primes[i];
     document.querySelector('.p').append(newElem);
   }
-  for (var i = 0; i < 1000; i++) {
-    newElem = document.createElement('option');
+  for (let i = 0; i < 1000; i++) {
+    const newElem = document.createElement('option');
     newElem.value = primes[i];
     newElem.innerText = primes[i];
     document.querySelector('.q').append(newElem);
@@ -23,8 +20,8 @@ function generateDropDowns() {
 }
 
 function getPQ() {
-  p = parseInt(document.querySelector('.p').value);
-  q = parseInt(document.querySelector('.q').value);
+  const p = parseInt(document.querySelector('.p').value);
+  const q = parseInt(document.querySelector('.q').value);
   document.querySelector('.results').innerText = '';
   document.querySelector('.results').innerText += `p = ${p}\n`;
   document.querySelector('.results').innerText += `q = ${q}\n`;
@@ -32,16 +29,16 @@ function getPQ() {
 }
 
 function getN(p, q) {
-  n = p * q;
-  var phiOfN = (p - 1) * (q - 1);
+  const n = p * q;
+  const phiOfN = (p - 1) * (q - 1);
   document.querySelector('.results').innerText += `n = ${n}\n`;
   document.querySelector('.results').innerText += `phi(n) = ${phiOfN}\n`;
-  chooseE(phiOfN);
+  chooseE(n, phiOfN);
 }
 
-function chooseE(phiOfN) {
-  var possibleEs = primes.filter(prime => prime < phiOfN);
-  let e = getRandomE(possibleEs, phiOfN);
+function chooseE(n, phiOfN) {
+  const possibleEs = primes.filter(prime => prime < phiOfN);
+  const e = getRandomE(possibleEs, phiOfN);
   document.querySelector('.results').innerText += `e = ${e}\n`;
   let d = findD([[e, 1, 0], [phiOfN, 0, 1]]);
   if (d < 0) {
@@ -60,19 +57,18 @@ function getRandomE(arr, phiOfN) {
   return e;
 }
 
-function findD(inMatrix) {
-  let matrix = inMatrix;
+function findD(matrix) {
   if (matrix[0][0] === 1) {
     d = matrix[0][1];
   } else if (matrix[1][0] === 1) {
     d = matrix[1][1];
   } else {
-    let clone = [...matrix];
-    let smallerFirstNum = Math.min(clone[0][0], clone[1][0]);
-    let largerFirstNum = Math.max(clone[0][0], clone[1][0]);
-    let rowCoeff = -1 * parseInt(largerFirstNum/smallerFirstNum);
-    let smlRow = getSmallerRowIndex(clone);
-    let bigRow = Math.abs(smlRow - 1);
+    const clone = [...matrix];
+    const smallerFirstNum = Math.min(clone[0][0], clone[1][0]);
+    const largerFirstNum = Math.max(clone[0][0], clone[1][0]);
+    const rowCoeff = -1 * parseInt(largerFirstNum/smallerFirstNum);
+    const smlRow = getSmallerRowIndex(clone);
+    const bigRow = Math.abs(smlRow - 1);
     clone[bigRow] = clone[bigRow].map(function(num, i) {
       return num + (clone[smlRow][i] * rowCoeff);
     });
@@ -90,42 +86,42 @@ function getSmallerRowIndex(matrix) {
 }
 
 function encrypt() {
-  let exp = parseInt(document.querySelector('#exponent').value);
-  let mod = parseInt(document.querySelector('#modulus').value);
-  let message = document.querySelector('#message').value;
-  let messageArray = message.toLowerCase().split('');
-  numberMessage = messageArray.map(function(char) {
-    return convertCharacterToNumber(char);
+  const exp = parseInt(document.querySelector('#exponent').value);
+  const mod = parseInt(document.querySelector('#modulus').value);
+  const message = document.querySelector('#message').value;
+  const messageArray = message.toLowerCase().split('');
+  numberMessage = messageArray.map(function(character) {
+    return characterToNumber[character];
   });
-  let messagePostAlgorithm = numberMessage.map(function(num) {
+  const messagePostAlgorithm = numberMessage.map(function(num) {
     return exponentiateAndModulo(num, exp, mod);
   });
-  let encryptedMessage = JSON.stringify(messagePostAlgorithm);
+  const encryptedMessage = JSON.stringify(messagePostAlgorithm);
   document.querySelector('.encryption-result').innerText = `${encryptedMessage}`;
 }
 
 function decrypt() {
-  let encryptedMessage = document.querySelector('#message-d').value;
-  let parsedMessage = JSON.parse(encryptedMessage);
-  let exp = parseInt(document.querySelector('#exponent-d').value);
-  let mod = parseInt(document.querySelector('#modulus-d').value);
-  let messagePostAlgorithm = parsedMessage.map(function(num) {
+  const encryptedMessage = document.querySelector('#message-d').value;
+  const parsedMessage = JSON.parse(encryptedMessage);
+  const exp = parseInt(document.querySelector('#exponent-d').value);
+  const mod = parseInt(document.querySelector('#modulus-d').value);
+  const messagePostAlgorithm = parsedMessage.map(function(num) {
     return exponentiateAndModulo(num, exp, mod);
   });
-  let cipherTextArray = messagePostAlgorithm.map(function(num) {
-    return convertNumberToCharacter(num);
+  const cipherTextArray = messagePostAlgorithm.map(function(num) {
+    return numberToCharacter[num];
   });
-  let cipherText = cipherTextArray.join('');
+  const cipherText = cipherTextArray.join('');
   document.querySelector('.decryption-result').innerText = `${cipherText}`;
 }
 
 function exponentiateAndModulo(num, exp, mod) {
   let result = num;
-  let iterationsOfSquaring = parseInt(Math.log(exp) / Math.log(2));
-  for (var i = 0; i < iterationsOfSquaring; i++) {
+  const iterationsOfSquaring = parseInt(Math.log(exp) / Math.log(2));
+  for (let i = 0; i < iterationsOfSquaring; i++) {
     result = (result ** 2) % mod;
   }
-  let lastExponent = exp - (2 ** iterationsOfSquaring);
+  const lastExponent = exp - (2 ** iterationsOfSquaring);
   if (lastExponent > 2) {
     result = (result * exponentiateAndModulo(num, lastExponent, mod)) % mod;
     return result;
@@ -133,12 +129,4 @@ function exponentiateAndModulo(num, exp, mod) {
     result = (result * (num ** lastExponent)) % mod;
     return result;
   }
-}
-
-function convertCharacterToNumber(character) {
-  return characterToNumber[character];
-}
-
-function convertNumberToCharacter(num) {
-  return numberToCharacter[num];
 }
