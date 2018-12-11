@@ -14,11 +14,11 @@
     <div class="results"></div>
     <section class="grid">
       <article class="left">
-        <label for="message">message: </label>
+        <label for="message">message (only letters and spaces): </label>
         <input type="text" name="message" id="message">
-        <label for="exponent">exponent: </label>
+        <label for="exponent">e: </label>
         <input type="number" name="exponent" id="exponent">
-        <label for="modulus">modulus: </label>
+        <label for="modulus">n: </label>
         <input type="number" name="modulus" id="modulus">
         <button class="encrypt">Encrypt</button>
         <div class="encryption-result"></div>
@@ -26,14 +26,15 @@
       <article class="right">
         <label for="message-d">ciphertext: </label>
         <input type="text" name="message" id="message-d">
-        <label for="exponent-d">exponent: </label>
+        <label for="exponent-d">d: </label>
         <input type="number" name="exponent" id="exponent-d">
-        <label for="modulus-d">modulus: </label>
+        <label for="modulus-d">n: </label>
         <input type="number" name="modulus" id="modulus-d">
         <button class="decrypt">Decrypt</button>
         <div class="decryption-result"></div>
       </article>
     </section>
+    <script type="text/javascript" src="data.js"></script>
     <script type="text/javascript" src="main.js"></script>
   </body>
 </html>
