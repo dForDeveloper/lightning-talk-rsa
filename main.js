@@ -6,8 +6,6 @@ document.querySelector('.decrypt').addEventListener('click', decrypt);
 
 new ClipboardJS('.copy');
 
-
-
 function generateDropDowns() {
   for (let i = 0; i < 1000; i++) {
     const newElem = document.createElement('option');
@@ -27,6 +25,7 @@ function getPQ() {
   const p = parseInt(document.querySelector('.p').value);
   const q = parseInt(document.querySelector('.q').value);
   document.querySelector('.results').innerText = '';
+  document.querySelector('.keys').innerHTML = '';
   document.querySelector('.results').innerText += `p = ${p}\n`;
   document.querySelector('.results').innerText += `q = ${q}\n`;
   getN(p, q);
@@ -49,14 +48,14 @@ function chooseE(n, phiOfN) {
     d += phiOfN;
   }
   document.querySelector('.results').innerText += `d = ${d}\n\n`;
-  document.querySelector('.results').innerHTML += `
+  document.querySelector('.keys').innerHTML += `
     <div>Public Key = 
       <span id="public-key">[${e}, ${n}]</span>
       <button class="copy" data-clipboard-target="#public-key">
         Copy Public Key
       </button>
     </div>`;
-  document.querySelector('.results').innerHTML += `
+  document.querySelector('.keys').innerHTML += `
     <div>Private Key = 
       <span id="private-key">[${d}, ${n}]</span>
       <button class="copy" data-clipboard-target="#private-key">
