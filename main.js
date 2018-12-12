@@ -4,6 +4,10 @@ document.querySelector('.get-p-and-q').addEventListener('click', getPQ);
 document.querySelector('.encrypt').addEventListener('click', encrypt);
 document.querySelector('.decrypt').addEventListener('click', decrypt);
 
+new ClipboardJS('.copy');
+
+
+
 function generateDropDowns() {
   for (let i = 0; i < 1000; i++) {
     const newElem = document.createElement('option');
@@ -45,8 +49,20 @@ function chooseE(n, phiOfN) {
     d += phiOfN;
   }
   document.querySelector('.results').innerText += `d = ${d}\n\n`;
-  document.querySelector('.results').innerText += `Public Key = (${e}, ${n})\n`;
-  document.querySelector('.results').innerText += `Private Key = (${d}, ${n})\n`;
+  document.querySelector('.results').innerHTML += `
+    <div>Public Key = 
+      <span id="public-key">[${e}, ${n}]</span>
+      <button class="copy" data-clipboard-target="#public-key">
+        Copy Public Key
+      </button>
+    </div>`;
+  document.querySelector('.results').innerHTML += `
+    <div>Private Key = 
+      <span id="private-key">[${d}, ${n}]</span>
+      <button class="copy" data-clipboard-target="#private-key">
+        Copy Private Key
+      </button>
+    </div>`;
 }
 
 function getRandomE(arr, phiOfN) {
@@ -86,10 +102,9 @@ function getSmallerRowIndex(matrix) {
 }
 
 function encrypt() {
-  const exp = parseInt(document.querySelector('#exponent').value);
-  const mod = parseInt(document.querySelector('#modulus').value);
+  const [exp, mod] = JSON.parse(document.querySelector('#exponent').value);
   const message = document.querySelector('#message').value;
-  const messageArray = message.toLowerCase().split('');
+  const messageArray = message.split('');
   numberMessage = messageArray.map(function(character) {
     return characterToNumber[character];
   });
@@ -98,13 +113,17 @@ function encrypt() {
   });
   const encryptedMessage = JSON.stringify(messagePostAlgorithm);
   document.querySelector('.encryption-result').innerText = `${encryptedMessage}`;
+  document.querySelector('.encryption-copy').innerHTML = `
+  <button class="copy" data-clipboard-target="#encrypted-message">
+    Copy Encrypted Message
+  </button>
+  `;
 }
 
 function decrypt() {
+  const [exp, mod] = JSON.parse(document.querySelector('#exponent-d').value);
   const encryptedMessage = document.querySelector('#message-d').value;
   const parsedMessage = JSON.parse(encryptedMessage);
-  const exp = parseInt(document.querySelector('#exponent-d').value);
-  const mod = parseInt(document.querySelector('#modulus-d').value);
   const messagePostAlgorithm = parsedMessage.map(function(num) {
     return exponentiateAndModulo(num, exp, mod);
   });

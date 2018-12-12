@@ -14,26 +14,24 @@
     <div class="results"></div>
     <section class="grid">
       <article class="left">
-        <label for="message">message: </label>
+        <label for="message">type your message:</label>
         <input type="text" name="message" id="message">
-        <label for="exponent">e: </label>
-        <input type="number" name="exponent" id="exponent">
-        <label for="modulus">n: </label>
-        <input type="number" name="modulus" id="modulus">
+        <label for="exponent">public key:</label>
+        <input type="text" name="exponent" id="exponent">
         <button class="encrypt">Encrypt</button>
-        <div class="encryption-result"></div>
+        <textarea class="encryption-result" id="encrypted-message"></textarea>
+        <div class="encryption-copy"></div>
       </article>
       <article class="right">
-        <label for="message-d">ciphertext: </label>
+        <label for="message-d">encrypted message:</label>
         <input type="text" name="message" id="message-d">
-        <label for="exponent-d">d: </label>
-        <input type="number" name="exponent" id="exponent-d">
-        <label for="modulus-d">n: </label>
-        <input type="number" name="modulus" id="modulus-d">
+        <label for="exponent-d">private key:</label>
+        <input type="text" name="exponent" id="exponent-d">
         <button class="decrypt">Decrypt</button>
-        <div class="decryption-result"></div>
+        <textarea class="decryption-result"></textarea>
       </article>
     </section>
+    <script type="text/javascript" src="clipboard.min.js"></script>
     <script type="text/javascript" src="data.js"></script>
     <script type="text/javascript" src="main.js"></script>
   </body>

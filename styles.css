@@ -12,7 +12,7 @@ button {
 }
 
 .results {
-  height: 200px;
+  height: 300px;
 }
 
 label {
@@ -32,12 +32,17 @@ input[type="number"] {
   grid-template-columns: 1fr 1fr;
 }
 
+.copy {
+  margin: 5px auto 20px;
+}
+
 .encrypt,
 .decrypt {
   margin-bottom: 40px;
 }
 
-.encryption-result,
-.decryption-result {
+textarea {
   font-size: 1rem;
+  width: 406px;
+  height: 200px;
 }
