@@ -3,38 +3,55 @@
   <head>
     <title>RSA Algorithm</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="styles.css">
+    <link rel="stylesheet" type="text/css" href="css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
   </head>
   <body>
-    <p>Choose two different prime numbers</p>
-    <select class="p">
-    </select>
-    <select class="q">
-    </select>
-    <button class="get-p-and-q">Generate RSA Keys</button>
-    <div class="results"></div>
-    <div class="keys"></div>
-    <section class="grid">
-      <article class="left">
-        <label for="message">type your message:</label>
-        <input type="text" name="message" id="message">
-        <label for="exponent">public key:</label>
-        <input type="text" name="exponent" id="exponent">
-        <button class="encrypt">Encrypt</button>
-        <textarea class="encryption-result" id="encrypted-message"></textarea>
-        <div class="encryption-copy"></div>
-      </article>
-      <article class="right">
-        <label for="message-d">encrypted message:</label>
-        <input type="text" name="message" id="message-d">
-        <label for="exponent-d">private key:</label>
-        <input type="text" name="exponent" id="exponent-d">
-        <button class="decrypt">Decrypt</button>
-        <textarea class="decryption-result"></textarea>
-      </article>
+    <section class="slide present">
+      <h1>JEO EXPLAINS RSA</h1>
+      <button class="button--app-link">Go to encryption/decryption app</button>
+      <button class="button--next">Next</button>
     </section>
-    <script type="text/javascript" src="clipboard.min.js"></script>
-    <script type="text/javascript" src="data.js"></script>
-    <script type="text/javascript" src="main.js"></script>
+    <section class="slide future">
+      <article class="article__grid-3">
+        <h2>Ron <strong>R</strong>ivest</h2>
+        <h2>Adi <strong>S</strong>hamir</h2>
+        <h2>Len <strong>A</strong>dleman</h2>
+      </article> 
+      <button class="button--next">Next</button>
+    </section>
+    <section class="slide future">
+      <p>Choose two different prime numbers</p>
+      <select class="p">
+      </select>
+      <select class="q">
+      </select>
+      <button class="get-p-and-q">Generate RSA Keys</button>
+      <div class="results"></div>
+      <div class="keys"></div>
+      <section class="grid">
+        <article class="left">
+          <label for="message">type your message:</label>
+          <input type="text" name="message" id="message">
+          <label for="exponent">public key:</label>
+          <input type="text" name="exponent" id="exponent">
+          <button class="encrypt">Encrypt</button>
+          <textarea class="encryption-result" id="encrypted-message"></textarea>
+          <div class="encryption-copy"></div>
+        </article>
+        <article class="right">
+          <label for="message-d">encrypted message:</label>
+          <input type="text" name="message" id="message-d">
+          <label for="exponent-d">private key:</label>
+          <input type="text" name="exponent" id="exponent-d">
+          <button class="decrypt">Decrypt</button>
+          <textarea class="decryption-result"></textarea>
+        </article>
+      </section>
+    </section>
+    <script type="text/javascript" src="js/clipboard.min.js"></script>
+    <script type="text/javascript" src="js/data.js"></script>
+    <script type="text/javascript" src="js/slide.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
   </body>
 </html>

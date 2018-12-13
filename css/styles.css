@@ -52,3 +52,16 @@ textarea {
   width: 400px;
   height: 200px;
 }
+
+.past {
+  display: none;
+}
+
+.future {
+  display: none;
+}
+
+.article__grid-3 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
