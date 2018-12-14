@@ -70,6 +70,12 @@ textarea {
 .article__grid-3 {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
+
+}
+
+.img--clip-art {
+  max-height: 300px;
+  justify-self: center;
 }
 
 .slide {
@@ -91,6 +97,11 @@ h1 {
 h2 {
   font-weight: 400;
   font-size: 3.5rem;
+}
+
+.h2--huge {
+  font-size: 14rem;
+  font-weight: 800;
 }
 
 strong.h2 {
