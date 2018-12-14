@@ -9,7 +9,9 @@
   </head>
   <body>
     <section class="slide present">
-      <h1>JEO EXPLAINS RSA</h1>
+      <h1>JEO</h1>
+      <h1>EXPLAINS</h1>
+      <h1>RSA</h1>
       <button class="button button--app-link">Go to encryption/decryption app</button>
       <button class="button button--next">Next</button>
     </section>
@@ -25,14 +27,36 @@
       <button class="button button--back">Back</button>
       <button class="button button--next">Next</button>
     </section>
+
+    <section class="slide future">
+      <h2>What is the RSA Algorithm?</h2>
+      <p>RSA is an asymmetric cryptosystem.</p>
+      <p>Cryptosystems are ways to encrypt and decrypt data.</p>
+      <button class="button button--back">Back</button>
+      <button class="button button--next">Next</button>
+    </section>
+
+    <section class="slide future">
+      <h2>Asymmetric is Opposed to Symmetric</h2>
+      <p>In <strong>asymmetric</strong> cryptosystems, there is one key for encryption and another key for decryption.</p>
+      <p>In <strong>symmetric</strong> cryptosystems, the same key is used for both encryption and decryption.</p>
+      <button class="button button--back">Back</button>
+      <button class="button button--next">Next</button>
+    </section>
+
+    <section class="slide future">
+      <button class="button button--back">Back</button>
+      <button class="button button--next">Next</button>
+    </section>
+
     <section class="slide future slide__app">
       <button class="button button--back">Back</button>
-      <p>Choose two different prime numbers</p>
+      <h4>Choose two different prime numbers</h4>
       <select class="p">
       </select>
       <select class="q">
       </select>
-      <button class="get-p-and-q">Generate RSA Keys</button>
+      <button class="get-p-and-q button button--app">Generate RSA Keys</button>
       <div class="results"></div>
       <div class="keys"></div>
       <section class="grid">
@@ -40,17 +64,17 @@
           <label for="message">type your message:</label>
           <input type="text" name="message" id="message">
           <label for="exponent">public key:</label>
-          <input type="text" name="exponent" id="exponent">
-          <button class="encrypt">Encrypt</button>
+          <input type="text" name="exponent" id="exponent" placeholder="paste public key here">
+          <button class="encrypt button button--app">Encrypt</button>
           <textarea class="encryption-result" id="encrypted-message"></textarea>
           <div class="encryption-copy"></div>
         </article>
         <article class="right">
           <label for="message-d">encrypted message:</label>
-          <input type="text" name="message" id="message-d">
+          <input type="text" name="message" id="message-d" placeholder="paste encrypted message here">
           <label for="exponent-d">private key:</label>
-          <input type="text" name="exponent" id="exponent-d">
-          <button class="decrypt">Decrypt</button>
+          <input type="text" name="exponent" id="exponent-d" placeholder="paste private key here">
+          <button class="decrypt button button--app">Decrypt</button>
           <textarea class="decryption-result"></textarea>
         </article>
       </section>

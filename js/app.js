@@ -51,14 +51,14 @@ function chooseE(n, phiOfN) {
   document.querySelector('.keys').innerHTML += `
     <div>Public Key = 
       <span id="public-key">[${e}, ${n}]</span>
-      <button class="copy" data-clipboard-target="#public-key">
+      <button class="copy button button--app" data-clipboard-target="#public-key">
         Copy Public Key
       </button>
     </div>`;
   document.querySelector('.keys').innerHTML += `
     <div>Private Key = 
       <span id="private-key">[${d}, ${n}]</span>
-      <button class="copy" data-clipboard-target="#private-key">
+      <button class="copy button button--app" data-clipboard-target="#private-key">
         Copy Private Key
       </button>
     </div>`;
@@ -113,7 +113,7 @@ function encrypt() {
   const encryptedMessage = JSON.stringify(messagePostAlgorithm);
   document.querySelector('.encryption-result').innerText = `${encryptedMessage}`;
   document.querySelector('.encryption-copy').innerHTML = `
-  <button class="copy" data-clipboard-target="#encrypted-message">
+  <button class="copy button button--app" data-clipboard-target="#encrypted-message">
     Copy Encrypted Message
   </button>
   `;

@@ -2,13 +2,14 @@
   box-style: border-box;
   font-size: 16px;
   font-family: 'Open Sans', sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
 body {
   text-align: center;
   display: grid;
   grid-template-rows: 1fr;
-  /* align-content: center; */
 }
 
 select {
@@ -44,6 +45,7 @@ input[type="text"] {
 
 .copy {
   margin: 5px auto 20px;
+  border: 1px solid lightblue
 }
 
 .encrypt,
@@ -74,19 +76,25 @@ textarea {
   width: 80%;
   margin: auto;
   align-self: center;
+  margin-top: 100px;
+}
+
+.slide__app {
+  margin-top: 20px;
 }
 
 h1 {
-  font-size: 5rem;
+  font-size: 7rem;
+  margin: 25px;
 }
 
 h2 {
   font-weight: 400;
-  font-size: 3rem;
+  font-size: 3.5rem;
 }
 
 strong.h2 {
-  font-size: 3rem;
+  font-size: 3.5rem;
 }
 
 .img--person {
@@ -111,4 +119,27 @@ strong.h2 {
   position: absolute;
   right: 5%;
   bottom: 50px;
+}
+
+.button--app {
+  font-size: 1rem;
+}
+
+.copy {
+  margin: 5px auto 20px;
+  border: 1px solid #00F;
+}
+
+.copy:hover {
+  background-color: #CCF;
+}
+
+p {
+  font-size: 2rem;
+  margin: 40px auto;
+  width: 70%;
+}
+
+p strong {
+  font-size: 2rem;
 }
