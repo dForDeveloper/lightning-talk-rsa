@@ -6,6 +6,9 @@
 
 body {
   text-align: center;
+  display: grid;
+  grid-template-rows: 1fr;
+  /* align-content: center; */
 }
 
 select {
@@ -67,6 +70,12 @@ textarea {
   grid-template-columns: 1fr 1fr 1fr;
 }
 
+.slide {
+  width: 80%;
+  margin: auto;
+  align-self: center;
+}
+
 h1 {
   font-size: 5rem;
 }
@@ -82,4 +91,24 @@ strong.h2 {
 
 .img--person {
   width: 100%;
+}
+
+.button {
+  background-color: white;
+  font-size: 1.5rem;
+  border: 1px solid black;
+  padding: 5px 10px;
+  border-radius: 15px;
+}
+
+.button--back {
+  position: absolute;
+  left: 5%;
+  bottom: 50px;
+}
+
+.button--next {
+  position: absolute;
+  right: 5%;
+  bottom: 50px;
 }
