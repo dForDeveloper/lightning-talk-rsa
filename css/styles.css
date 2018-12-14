@@ -50,7 +50,7 @@ input[type="text"] {
 
 .encrypt,
 .decrypt {
-  margin-bottom: 40px;
+  margin-bottom: 30px;
 }
 
 textarea {
@@ -97,8 +97,12 @@ strong.h2 {
   font-size: 3.5rem;
 }
 
-.img--person {
+.img--person, .img--full-slide {
   width: 100%;
+}
+
+.img--full-slide--tall {
+  width: 80%;
 }
 
 .button {
