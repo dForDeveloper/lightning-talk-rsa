@@ -1,6 +1,7 @@
 * {
   box-style: border-box;
   font-size: 16px;
+  font-family: 'Open Sans', sans-serif;
 }
 
 body {
@@ -64,4 +65,21 @@ textarea {
 .article__grid-3 {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
+}
+
+h1 {
+  font-size: 5rem;
+}
+
+h2 {
+  font-weight: 400;
+  font-size: 3rem;
+}
+
+strong.h2 {
+  font-size: 3rem;
+}
+
+.img--person {
+  width: 100%;
 }
