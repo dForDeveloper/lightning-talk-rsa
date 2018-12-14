@@ -80,7 +80,38 @@
     </section>
 
     <section class="slide future">
-        <h2 class="h2--huge">BIG PRIME NUMBERS</h2>
+      <h2 class="h2--huge">BIG PRIME NUMBERS</h2>
+      <button class="button button--back">Back</button>
+      <button class="button button--next">Next</button>
+    </section>
+
+    <section class="slide future slide__math">
+      <p class="p--math">Start with p and q, which are distinct prime numbers</p>
+      <p class="p--math">n = p * q</p>
+      <p class="p--math">φ(n) = (p - 1) * (q - 1)</p>
+      <p class="p--math">Choose e such that 1  ≤  e  <  φ(n) and gcd(e, φ(n)) = 1</p>
+      <p class="p--math">Find d, where d ≡ e-1 (mod φ(n)), meaning (d * e) % φ(n) === 1</p>
+      <button class="button button--back">Back</button>
+      <button class="button button--next">Next</button>
+    </section>
+
+    <section class="slide future slide__math">
+      <p class="p--math">Example: p = 2, q = 17</p>
+      <p class="p--math">n = 2 * 17 = 34</p>
+      <p class="p--math">φ(n) = (2 - 1) * (17 - 1) = 1 * 16 = 16</p>
+      <p class="p--math">Choose e such that 1  ≤  e  <  φ(n) and gcd(e, φ(n)) = 1,</p>
+      <p class="p--math">let’s pick e = 3</p>
+      <p class="p--math">Find d, where d ≡ e-1 (mod φ(n)), meaning (d * e) % φ(n) === 1</p>
+      <p class="p--math">11 * 3 = 33</p>
+      <p class="p--math">33 % 16 = 1</p>   
+      <p class="p--math">d = 11</p>   
+      <p class="p--math">The public key is (3, 34). The private key is (11, 34).</p>
+      <button class="button button--back">Back</button>
+      <button class="button button--next">Next</button>
+    </section>
+
+    <section class="slide future slide__math">
+        <img src="images/key-example.jpeg" alt="key example"  class="img--full-slide">
         <button class="button button--back">Back</button>
         <button class="button button--next">Next</button>
       </section>
